@@ -18,6 +18,7 @@ Documents should be taggable for searching, and a full representation of a docum
 3. A system that is easy to navigate by document authors and researchers that allows for many authors to work at the same time within the document repository/library.
 4. An artifact management system that allows for other materials, such as charts, graphs, and tables (CSV/Excel), to be pulled into documentation easily for inclusion as reference materials. Often, the same chart, graph, table, or graphic is needed in multiple documents. The ability to provide both the artifact and the description of the artifact in plain text.
 5. A meta system is provided that allows for comments and conversation to occur over a document. This meta system is also stored in text form within adjacent data structures in the repository.
+6. Transform documentation into executable knowledge—where every document becomes a living system that defines, generates, validates, and explains the software it describes.
 
 ### Objective 
 1. Reduce the amount of time required to maintain specifications and complex working materials for projects by providing a repository that can reference all materials.
@@ -55,7 +56,6 @@ Documents should be taggable for searching, and a full representation of a docum
   * Reusable document composition
 * Diagram Management
   * Uploading new diagrams
-  * Example: https://github.com/jgraph/mxgraph
 * Publication
   *  Versioned publication
   * PDF rendering
@@ -64,8 +64,7 @@ Documents should be taggable for searching, and a full representation of a docum
   * Documents and artifacts can be commented on referencing lines or objects within the artifact
   * All artifacts and documents can be referenced and included into other objects
   * partial documents such as a paragraph or series of lines can be referenced in another document
-    * The system shall detect and reject inclusion cycles that prevent deterministic assembly during the assembly phase and the inclusion will not occur.
-
+    * Document assembly must be deterministic and must not permit unresolved inclusion cycles.
 ### Dictionary
 ***artifact***: is a managed resource that can be referenced by a document, including images, diagrams, datasets, spreadsheets, generated charts, PDFs, and other supporting files. An artifact has a stable identity, metadata, version history, and an accessible textual description where applicable
 
@@ -73,7 +72,7 @@ Documents should be taggable for searching, and a full representation of a docum
 
 ***aggragated document*** is a document composed out of text and tokens that idicate where and what other documents should be imported. The document itself is composed of its own descriptions and also inclusion points for other documents or other artifacts such as graphs, images, charts, or tables. 
 
-***Numbered version*** is a snapshot (duplication of a document) of a aggragated document at a specific time captured and numbered so that it can be references as a historical artifact.
+***Assembled Document***: the resolved content produced by traversing a main document and its dependencies.
 
 ***main document*** is a document designated as an entry point into a graph of documents and artifacts. It can be pointed to as a place to start reading from to produce a output artifact such as PDF.
 
@@ -83,11 +82,14 @@ Documents should be taggable for searching, and a full representation of a docum
 
 ***library*** is a series of main documents that are associated together to produce a meaningful collection of ideas.
 
-***Assembled Document*** are documents produced starting at a main document and pulling in all referenced artifacts. Assembled documents are number versioned documents that are seperate from the working "live" set of documents. 
+***Published Version***: an immutable, numbered release record containing the assembled document, resolved dependency manifest, metadata, and rendered outputs.
 
-***Publication*** is a rendered assembled document into a form of a PDF, MS Word Document, other finalized form. 
+***Publication***: is an immutable release of an assembled document identified by a version and accompanied by its source manifest and one or more rendered outputs.
 
+***Rendered Output***: is a derived representation of a publication, such as PDF, DOCX, HTML, or assembled Markdown.
 
 ## Needs
 * [Customer Insight Documentation System Vision](./00.01-Interview-Constitution.md)
 * [Partial References](./00.02-Partial-References.md)
+* [Literate Programming](.00.03.Literate-Programming.md)
+* [Documentation as Test](00.04.FitNesse.md)
