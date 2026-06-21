@@ -25,14 +25,13 @@ Documents should be taggable for searching, and a full representation of a docum
 3. A system that is both people-readable and maintainable but also allows for robots to work on documents, partials, and other artifacts in a way that multiple people can work together. 
 
 ### Guiding Principles
-* Text is the canonical representation: The text version is the authoritative, definitive source of truth; artifacts that are deployed, such as PDFs, will be produced from the text. The text remains the source for all further offspring. 
-* Every generated document is reproducible: Every Document when versioned and produced must have a text version of it as well that is also versioned and number so that it can be reproduced from that text version.
+* Text is the canonical representation: The text version is the authoritative, definitive source of truth; artifacts that are published, such as PDFs, will be produced from the text. Artifacts produced such as numbered versions will treated as derivative works and will not be considered as source documents.
+* Every generated document is reproducible: Every Document when versioned and produced must have a text version of it as well that is also versioned and number so that it can be reproduced from that text version. Every published document shall be reproducible from an immutable record of its source revision, referenced dependencies, artifacts, rendering configuration, and build-tool version.
 * References must be resolvable and traceable.
-* No change may silently overwrite another author's work.
+* No change may silently overwrite another author's work. Concurrent human or automated changes must be detected, preserved, and reconciled explicitly. The system must never silently discard accepted work.
 * Published versions are immutable.
 * Human-readable and machine-readable representations must remain aligned.
 * Artifacts require metadata and accessible textual descriptions.
-* [Example need - Customer Insight Documentation System Vision](./00.01-Interview-Constitution.md)
 
 ### Scope
 * Document Management
@@ -46,10 +45,7 @@ Documents should be taggable for searching, and a full representation of a docum
   * Reusable document composition
   * Preivew of Documennt including inclusion of Partials
   * Review of PDF render would look like
-  * WYSIWYG editor for creating the text and layout
-    * Tables
-    * Partials includes
-    * Artifact embedding
+  * Authors must be able to create and format documents without directly editing source syntax
 * Artifact Management
   * Artifact registration and reuse
   * Uploading artifacts
@@ -68,11 +64,12 @@ Documents should be taggable for searching, and a full representation of a docum
   * Documents and artifacts can be commented on referencing lines or objects within the artifact
   * All artifacts and documents can be referenced and included into other objects
   * partial documents such as a paragraph or series of lines can be referenced in another document
+    * The system shall detect and reject inclusion cycles that prevent deterministic assembly during the assembly phase and the inclusion will not occur.
 
 ### Dictionary
-***artifact***: is any object that can be stored within a computer system as a single binary object. Items such as plain text files, images, pdf, markdown files, CSVs, excel documents, etc.
+***artifact***: is a managed resource that can be referenced by a document, including images, diagrams, datasets, spreadsheets, generated charts, PDFs, and other supporting files. An artifact has a stable identity, metadata, version history, and an accessible textual description where applicable
 
-***Document***:  is any plain text artifact that's intended purposed to to describe.
+***Document***: is a text-based managed resource intended to communicate structured information. A document may contain original content, metadata, and references to other documents or artifacts.
 
 ***aggragated document*** is a document composed out of text and tokens that idicate where and what other documents should be imported. The document itself is composed of its own descriptions and also inclusion points for other documents or other artifacts such as graphs, images, charts, or tables. 
 
@@ -80,6 +77,17 @@ Documents should be taggable for searching, and a full representation of a docum
 
 ***main document*** is a document designated as an entry point into a graph of documents and artifacts. It can be pointed to as a place to start reading from to produce a output artifact such as PDF.
 
+***partial document*** is a document intended primarily for reuse within one or more aggregated documents rather than as a standalone reading entry point.
+
 ***repository*** is a storage system that contains documents, artifacts, meta data, and any other resource that could be used in the document and management.
 
 ***library*** is a series of main documents that are associated together to produce a meaningful collection of ideas.
+
+***Assembled Document*** are documents produced starting at a main document and pulling in all referenced artifacts. Assembled documents are number versioned documents that are seperate from the working "live" set of documents. 
+
+***Publication*** is a rendered assembled document into a form of a PDF, MS Word Document, other finalized form. 
+
+
+## Needs
+* [Customer Insight Documentation System Vision](./00.01-Interview-Constitution.md)
+* [Partial References](./00.02-Partial-References.md)
