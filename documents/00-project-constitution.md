@@ -1,95 +1,266 @@
 # Project Constitution
 
-***name*** Document Management
+**Project:** Document Management
 
-## Overview
+## 1. Purpose
 
-This project is to create a Document Management System. This product is a Document Management system that will allow complex specifications and collaboration materials to be stored in a text format that machines and robots can read, while also providing enough markup to produce rich documents that people can understand and render into PDF for delivery to 3rd parties that cannot access the repositories.  
+This project will create a Document Management System for producing, maintaining, assembling, validating, and publishing complex specifications and collaborative working materials.
 
-Documents will be composed of parts (other documents included in an aggregate) that allow for sections, chapters, tables, and any partial section to be written in an independent document and included in the "main" document. 
+The system will store authoritative source material in open, text-based formats that can be read and maintained by people, indexed and interpreted by automated tools and large language models, and transformed into rich deliverables such as PDF, DOCX, HTML, and assembled Markdown.
 
-Documents and partial documents will be represented as a complex graph, where a document can be referenced and pulled into any other document. While the base level structure will be a tree of folders and documents, documents should be free to reference any document in the entire structure.
+The system will support reusable documents, addressable content regions, managed artifacts, semantic relationships, executable specifications, and traceable publications. It will enable multiple human and automated contributors to work within a shared repository without silently losing accepted work.
 
-Documents should be taggable for searching, and a full representation of a document that combines all partials should be able to be built at any time and stored as a numbered version. The system will keep track of numbered versions. Each numbered version will be available as both a text and a PDF. 
+## 2. Vision
 
-### Vision
-1. A comprehensive document management system that allows large collections of working materials to be combined into complete documents that can be versioned and provided to 3rd parties.
-2. A document management system that provides all text to be stored in a form that can be easily consumed and indexed by LLMs for reference and integration.
-3. A system that is easy to navigate by document authors and researchers that allows for many authors to work at the same time within the document repository/library.
-4. An artifact management system that allows for other materials, such as charts, graphs, and tables (CSV/Excel), to be pulled into documentation easily for inclusion as reference materials. Often, the same chart, graph, table, or graphic is needed in multiple documents. The ability to provide both the artifact and the description of the artifact in plain text.
-5. A meta system is provided that allows for comments and conversation to occur over a document. This meta system is also stored in text form within adjacent data structures in the repository.
-6. Transform documentation into executable knowledge—where every document becomes a living system that defines, generates, validates, and explains the software it describes.
+1. Provide a comprehensive document management environment in which large collections of working materials can be assembled into complete, versioned publications for internal and external audiences.
+2. Store authoritative text in forms that are understandable to people and readily consumable, searchable, and indexable by automated tools and large language models.
+3. Enable document authors, researchers, analysts, engineers, and automated agents to work concurrently within a shared repository and library.
+4. Treat charts, diagrams, datasets, spreadsheets, images, generated reports, and other supporting materials as reusable, versioned artifacts with metadata and accessible textual descriptions.
+5. Preserve comments, discussions, annotations, evidence, interpretations, and decisions as managed information connected to the documents and artifacts they concern.
+6. Transform documentation into executable knowledge where appropriate, allowing structured documents to define, generate, validate, and explain the software, workflows, tests, and operational processes they describe.
+7. Build enduring institutional knowledge by preserving the context, provenance, relationships, and decisions surrounding managed information.
 
-### Objective 
-1. Reduce the amount of time required to maintain specifications and complex working materials for projects by providing a repository that can reference all materials.
-2. Create a rich ecosystem where both document materials and artifacts all reside along side each other and can be easily encorperated into each other.
-3. A system that is both people-readable and maintainable but also allows for robots to work on documents, partials, and other artifacts in a way that multiple people can work together. 
+## 3. Objectives
 
-### Guiding Principles
-* Text is the canonical representation: The text version is the authoritative, definitive source of truth; artifacts that are published, such as PDFs, will be produced from the text. Artifacts produced such as numbered versions will treated as derivative works and will not be considered as source documents.
-* Every generated document is reproducible: Every Document when versioned and produced must have a text version of it as well that is also versioned and number so that it can be reproduced from that text version. Every published document shall be reproducible from an immutable record of its source revision, referenced dependencies, artifacts, rendering configuration, and build-tool version.
-* References must be resolvable and traceable.
-* No change may silently overwrite another author's work. Concurrent human or automated changes must be detected, preserved, and reconciled explicitly. The system must never silently discard accepted work.
-* Published versions are immutable.
-* Human-readable and machine-readable representations must remain aligned.
-* Artifacts require metadata and accessible textual descriptions.
+1. Reduce the time and effort required to maintain complex specifications and working materials by enabling controlled reuse rather than duplication.
+2. Create an integrated ecosystem in which documents, artifacts, evidence, metadata, comments, and relationships can be discovered and incorporated into new work.
+3. Support both human and automated contributors without sacrificing clarity, reviewability, ownership, or traceability.
+4. Enable deterministic assembly and reproducible publication of complex documents from distributed source materials.
+5. Reduce documentation drift by connecting behavioral specifications to objective verification and executable examples where practical.
+6. Preserve the lineage between source evidence, interpretations, specifications, generated outputs, verification results, decisions, and actions.
 
-### Scope
-* Document Management
-  * Authoring source documents
-  * Modifying source documents
-  * identifying main documents
-  * tagging documents
-  * References and dependency management
-  * Artifact registration and reuse
-  * Search and classification
-  * Reusable document composition
-  * Preivew of Documennt including inclusion of Partials
-  * Review of PDF render would look like
-  * Authors must be able to create and format documents without directly editing source syntax
-* Artifact Management
-  * Artifact registration and reuse
-  * Uploading artifacts
-  * References and dependency management
-  * Artifact registration and reuse
-  * Search and classification
-  * Reusable document composition
-* Diagram Management
-  * Uploading new diagrams
-* Publication
-  *  Versioned publication
-  * PDF rendering
-* Meta Management 
-  * Document Graph is searchable and taggable 
-  * Documents and artifacts can be commented on referencing lines or objects within the artifact
-  * All artifacts and documents can be referenced and included into other objects
-  * partial documents such as a paragraph or series of lines can be referenced in another document
-    * Document assembly must be deterministic and must not permit unresolved inclusion cycles.
-### Dictionary
-***artifact***: is a managed resource that can be referenced by a document, including images, diagrams, datasets, spreadsheets, generated charts, PDFs, and other supporting files. An artifact has a stable identity, metadata, version history, and an accessible textual description where applicable
+## 4. Constitutional Principles
 
-***Document***: is a text-based managed resource intended to communicate structured information. A document may contain original content, metadata, and references to other documents or artifacts.
+### 4.1 Text Is Canonical
 
-***aggragated document*** is a document composed out of text and tokens that idicate where and what other documents should be imported. The document itself is composed of its own descriptions and also inclusion points for other documents or other artifacts such as graphs, images, charts, or tables. 
+Authoritative source documents and metadata shall be maintained in open, text-based formats wherever practical. Rendered outputs and generated artifacts are derivative works and shall not replace their authoritative source.
 
-***Assembled Document***: the resolved content produced by traversing a main document and its dependencies.
+### 4.2 Authority and Derivation Are Distinct
 
-***main document*** is a document designated as an entry point into a graph of documents and artifacts. It can be pointed to as a place to start reading from to produce a output artifact such as PDF.
+Authoring source, assembled documents, generated code, executable tests, verification results, publications, and rendered outputs shall remain distinguishable even when produced from a common source graph.
 
-***partial document*** is a document intended primarily for reuse within one or more aggregated documents rather than as a standalone reading entry point.
+### 4.3 Publications Are Reproducible
 
-***repository*** is a storage system that contains documents, artifacts, meta data, and any other resource that could be used in the document and management.
+Every publication shall be reproducible from an immutable record of its source revision, referenced dependencies, artifact versions, source manifest, rendering configuration, templates, and build-tool versions.
 
-***library*** is a series of main documents that are associated together to produce a meaningful collection of ideas.
+### 4.4 Published Versions Are Immutable
 
-***Published Version***: an immutable, numbered release record containing the assembled document, resolved dependency manifest, metadata, and rendered outputs.
+A published version shall not be modified after release. Corrections or changes shall produce a new published version.
 
-***Publication***: is an immutable release of an assembled document identified by a version and accompanied by its source manifest and one or more rendered outputs.
+### 4.5 References Are Resolvable and Traceable
 
-***Rendered Output***: is a derived representation of a publication, such as PDF, DOCX, HTML, or assembled Markdown.
+Every managed reference shall identify its source, target, version or resolution policy, and relationship type. Reference resolution shall be deterministic and auditable.
 
-## Needs
-* [Customer Insight Documentation System Vision](./00.01-Interview-Constitution.md)
-* [Partial References](./00.02-Partial-References.md)
-* [Literate Programming](.00.03.Literate-Programming.md)
-* [Documentation as Test](00.04.FitNesse.md)
+### 4.6 Identity Is Independent of Location
+
+Documents, artifacts, addressable content regions, relationships, and publications shall have stable identities that survive ordinary renaming, movement, and repository restructuring.
+
+### 4.7 Assembly Is Deterministic
+
+Given the same source revision, dependency manifest, artifacts, and build configuration, the system shall produce the same assembled document. Assembly shall not permit unresolved references or inclusion cycles that prevent deterministic resolution.
+
+### 4.8 No Accepted Work Is Silently Lost
+
+Concurrent human or automated changes shall be detected, preserved, and reconciled explicitly. The system shall never silently overwrite or discard accepted work.
+
+### 4.9 Human and Machine Readability Remain Aligned
+
+Structured content shall remain understandable to people while retaining sufficient semantics for automated indexing, transformation, generation, validation, and analysis.
+
+### 4.10 Artifacts Are First-Class Managed Resources
+
+Artifacts shall have stable identities, metadata, version history, ownership, provenance, and accessible textual descriptions where applicable.
+
+### 4.11 Provenance Is Preserved
+
+Derived content, synthesized findings, generated artifacts, recommendations, decisions, and actions shall retain navigable provenance to their source materials, contributing regions, transformations, authors or generators, and relevant versions.
+
+### 4.12 Context Is Preserved
+
+Managed knowledge shall preserve the context necessary for future readers to understand why it was created, by whom, from what evidence, under what conditions, and for what purpose.
+
+### 4.13 Dependencies Are Visible Before Change
+
+Authors and maintainers shall be able to inspect inbound and outbound dependencies and understand the likely impact of modifying shared content before changes are propagated.
+
+### 4.14 Execution Is Explicit and Controlled
+
+Executable content shall be explicitly identified and executed only through controlled, reviewable, and auditable mechanisms. Ordinary prose shall not be executed merely because it appears in a managed document.
+
+### 4.15 Behavioral Claims Should Be Verifiable
+
+Behavioral requirements and acceptance examples should be objectively verifiable and, where practical, executable. Explanatory, historical, legal, research, and rationale content need not be executable to remain valuable.
+
+### 4.16 Verification Is Recorded
+
+Executable specifications and validation processes shall produce durable results that identify the specification version, dependency versions, system-under-test version, execution environment, execution time, and outcome.
+
+### 4.17 Generated Outputs Remain Traceable
+
+Generated code, tests, diagrams, configurations, reports, and other outputs shall remain traceable to the source documents, regions, rules, and versions from which they were produced.
+
+### 4.18 Openness and Replaceability Are Preferred
+
+The system should favor open formats, documented interfaces, and replaceable integrations. Domain concepts shall not be unnecessarily coupled to a specific repository host, rendering engine, testing framework, or AI provider.
+
+## 5. Scope
+
+### 5.1 Document Authoring
+
+- Create and modify text-based source documents.
+- Identify main documents and partial documents.
+- Define addressable content regions within documents.
+- Apply metadata, tags, classifications, ownership, and access controls.
+- Author structured content without requiring direct manipulation of source syntax.
+- Preview documents with resolved references and included partials.
+
+### 5.2 Document Composition
+
+- Compose documents from other documents, partial documents, content regions, and artifacts.
+- Maintain explicit dependency relationships.
+- Support deterministic assembly of document graphs.
+- Detect unresolved references and inclusion cycles.
+- Support controlled reference modes, including live, approval-controlled, and pinned references.
+- Preserve source identity and provenance during composition.
+
+### 5.3 Artifact Management
+
+- Register, upload, classify, version, and reuse artifacts.
+- Associate metadata, ownership, provenance, and textual descriptions with artifacts.
+- Reference artifacts from documents and other managed resources.
+- Identify inbound and outbound artifact dependencies.
+
+### 5.4 Search, Classification, and Navigation
+
+- Search documents, artifacts, metadata, comments, relationships, and publications.
+- Navigate the repository as both a hierarchical structure and a graph of relationships.
+- Discover related materials without prior knowledge of repository location.
+- Support tag-based, metadata-based, full-text, and relationship-based discovery.
+
+### 5.5 Collaboration and Meta Management
+
+- Comment on documents, artifacts, content regions, and publications.
+- Preserve discussions, annotations, review decisions, and follow-up actions as managed text-based data.
+- Support concurrent human and automated contributors.
+- Detect and reconcile conflicting changes without silent data loss.
+- Preserve distinct contributor perspectives alongside synthesized conclusions.
+
+### 5.6 Publication
+
+- Assemble a main document and its resolved dependency graph.
+- Create immutable, numbered published versions.
+- Record a source manifest and dependency manifest for every publication.
+- Produce one or more rendered outputs, including PDF and assembled text.
+- Preserve all information required to reproduce the publication.
+
+### 5.7 Diagram Management
+
+- Create, upload, version, reference, and render diagrams.
+- Preserve diagram source where available.
+- Associate diagrams with accessible textual descriptions and provenance.
+
+### 5.8 Provenance and Knowledge Relationships
+
+- Link evidence to observations, findings, insights, recommendations, decisions, and actions.
+- Preserve contextual metadata and source lineage.
+- Model relationships among documents, artifacts, people, organizations, objectives, initiatives, concepts, and outcomes.
+- Support impact analysis across those relationships.
+
+### 5.9 Executable Specifications and Validation
+
+- Represent behavioral requirements through structured, readable examples.
+- Execute explicitly designated specifications through controlled adapters or integrations.
+- Record verification evidence and results.
+- Integrate validation into automated delivery and review workflows where appropriate.
+- Generate code, tests, configuration, or other outputs from structured source when explicitly configured.
+
+## 6. Out of Scope Unless Explicitly Added
+
+The following are not assumed to be part of the initial product unless later adopted through requirements and architectural decisions:
+
+- Replacing Git or other repository hosting platforms.
+- General-purpose binary file editing.
+- Uncontrolled execution of prose or uploaded content.
+- Real-time character-by-character collaborative editing.
+- Enterprise records retention, legal hold, or regulatory disposition management.
+- Public content distribution portals.
+- A complete project-management, issue-tracking, or messaging platform.
+- A proprietary document format required for basic interoperability.
+
+## 7. Domain Dictionary
+
+### Artifact
+
+A managed resource that may be referenced by a document or another managed resource, including images, diagrams, datasets, spreadsheets, generated charts, PDFs, recordings, and supporting files. An artifact has a stable identity, metadata, version history, ownership, provenance, and an accessible textual description where applicable.
+
+### Source Document
+
+A mutable, text-based managed resource used to communicate structured information. A source document may contain original content, metadata, executable declarations, and references to other documents, content regions, or artifacts.
+
+### Main Document
+
+A source document designated as an entry point into a graph of documents, regions, and artifacts for assembly or publication.
+
+### Partial Document
+
+A source document intended primarily for reuse within one or more other documents rather than as a standalone reading entry point.
+
+### Content Region
+
+A stably identified, explicitly bounded portion of a source document that may be referenced, reused, discussed, versioned, or validated independently of the entire document.
+
+### Content Reference
+
+A managed relationship from a destination location to a source document, content region, artifact, or publication. A content reference records its target identity, resolution policy, relevant version information, and synchronization state.
+
+### Aggregated Document
+
+A source document that contains original content together with explicit inclusion points for other documents, content regions, or artifacts.
+
+### Assembled Document
+
+The deterministic, resolved text representation produced by traversing a main document and its selected dependencies according to their reference policies.
+
+### Published Version
+
+An immutable, numbered release record containing an assembled document, source manifest, resolved dependency manifest, publication metadata, and one or more rendered outputs.
+
+### Publication
+
+The act and resulting managed release by which an assembled document becomes an immutable published version.
+
+### Rendered Output
+
+A derived representation of a published version, such as PDF, DOCX, HTML, assembled Markdown, or another finalized format.
+
+### Repository
+
+A managed storage environment containing source documents, artifacts, metadata, relationships, comments, publication records, and other resources used by the system.
+
+### Library
+
+A meaningful collection of related main documents, source documents, artifacts, publications, and relationships organized around a shared subject, product, initiative, or body of knowledge.
+
+### Provenance
+
+The recorded lineage connecting managed information to its sources, contributors, transformations, versions, evidence, and resulting outputs.
+
+### Verification Result
+
+A durable record of executing or otherwise validating a specification, including the specification version, system-under-test version, execution environment, time, and outcome.
+
+## 8. Product Drivers and Supporting Needs
+
+- [Customer Insight Documentation System Vision](./00.01-Interview-Constitution.md)
+- [Referenced Content Management Vision](./00.02-Partial-References.md)
+- [Documentation as Executable Code](./00.03.Literate-Programming.md)
+- [Documentation as Test](./00.04.FitNesse.md)
+
+These documents provide source needs, examples, and product drivers. They do not independently override this constitution. Conflicts shall be resolved in favor of this constitution unless the constitution is explicitly amended.
+
+## 9. Amendment Process
+
+1. Proposed changes to this constitution shall identify the principle, scope boundary, or definition being changed.
+2. The proposal shall explain the motivation, affected needs, and downstream impact on stories, requirements, domain models, and architecture decisions.
+3. Approved changes shall be committed with a clear rationale and revision history.
+4. Requirements and architecture decisions that conflict with this constitution shall be revised or accompanied by an approved constitutional amendment.
