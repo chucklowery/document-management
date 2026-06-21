@@ -10,7 +10,7 @@ The model is centered on one core pattern:
 
 > The system is a graph of versioned Resources connected by explicit Relationships.
 
-The model deliberately keeps the number of foundational concepts small. Documents, artifacts, knowledge records, generated outputs, verification results, and publications are expressed as Resource Kinds. Composition, provenance, evidence, meaning, and succession are expressed as Relationship Types.
+The model deliberately keeps the number of foundational concepts small. Documents, artifacts, knowledge records, generated outputs, verification results, parties, intent records, collaboration records, governance records, and execution records are expressed as Resource Kinds. Composition, provenance, evidence, meaning, coverage, verification, intent, and succession are expressed as Relationship Types.
 
 This is an analysis model, not an implementation design. The concepts below are not automatically database tables, services, classes, or API resources.
 
@@ -132,7 +132,7 @@ Contracts preserve the simplified graph model. They do not create separate subsy
 
 ## 7. Resource Kind Contracts
 
-The model defines five Resource Kind contracts.
+The model defines ten Resource Kind contracts.
 
 ### 7.1 Document Contract
 
@@ -155,6 +155,8 @@ A Document may participate in:
 - **Includes** relationships;
 - **Derived From** relationships;
 - **Supports** or **Contradicts** relationships;
+- **Covers** relationships;
+- **Addresses** relationships;
 - **Supersedes** relationships;
 - library membership and accountability relationships.
 
@@ -252,6 +254,7 @@ A Knowledge Record may participate in:
 - **Supports** and **Contradicts** relationships;
 - **Derived From** relationships;
 - **Relates To** relationships;
+- **Addresses** relationships;
 - **Supersedes** relationships.
 
 #### Additional kind rules
@@ -295,7 +298,7 @@ Every Generated Output Revision has at least one **Derived From** relationship t
 A Generated Output may participate in:
 
 - **Derived From** relationships;
-- **Verified By** relationships;
+- inverse **Verifies** relationships from Verification Results;
 - **Supersedes** relationships;
 - **Includes** relationships when reused elsewhere.
 
@@ -308,13 +311,13 @@ A Generated Output may participate in:
 
 ### 7.5 Verification Result Contract
 
-A **Verification Result** is an immutable Resource recording the outcome of evaluating a specification against a target.
+A **Verification Result** is an immutable Resource recording the outcome of evaluating a specification, claim, requirement, acceptance example, or output against a target.
 
 #### Required payload
 
 A Verification Result records:
 
-- specification Resource and Revision;
+- specification, claim, Requirement, or Acceptance Example identity and Revision;
 - target Resource and Revision;
 - execution environment;
 - adapter or tool version;
@@ -334,7 +337,7 @@ Supported outcomes include:
 
 A Verification Result has:
 
-- a **Verifies** relationship to the specification or claim evaluated;
+- a **Verifies** relationship to the specification, claim, Requirement, Acceptance Example, or output evaluated;
 - a **Relates To** relationship to the target evaluated;
 - **Derived From** relationships to exact execution inputs where required.
 
@@ -348,6 +351,270 @@ A Verification Result may play the role of Evidence.
 2. Exact specification, target, environment, and tool versions are recorded.
 3. Ordinary prose is not executed implicitly.
 4. Execution does not mutate authoritative source without creating a separate Revision.
+
+### 7.6 Intent Record Contract
+
+An **Intent Record** is a Resource whose Revisions express a problem, desired outcome, governing rule, planned change, or expected behavior.
+
+Supported Intent Record kinds are:
+
+- Need;
+- Goal;
+- Objective;
+- Requirement;
+- Behavioral Requirement;
+- Business Rule;
+- Acceptance Example;
+- Outcome;
+- Initiative;
+- Opportunity;
+- Product Idea.
+
+#### Required revision payload
+
+An Intent Record Revision contains:
+
+- statement or structured expression;
+- author or originating party;
+- context;
+- status;
+- rationale where applicable;
+- priority or importance where applicable;
+- acceptance or success conditions where applicable.
+
+#### Additional kind rules
+
+- A Need states a problem, opportunity, or unmet condition.
+- A Goal or Objective states a desired future condition.
+- A Requirement states a testable capability, behavior, quality, or constraint.
+- A Behavioral Requirement identifies observable behavior under defined conditions.
+- A Business Rule states a rule governing domain behavior or decisions.
+- An Acceptance Example records inputs, relevant conditions, and expected outcomes.
+- An Outcome records an intended or observed result.
+- An Initiative groups coordinated work toward one or more Goals.
+
+#### Allowed relationships
+
+An Intent Record may participate in:
+
+- **Addresses** relationships;
+- **Covers** relationships;
+- **Verifies** relationships from Verification Results;
+- **Supports** and **Contradicts** relationships;
+- **Derived From** relationships;
+- **Relates To** relationships;
+- **Supersedes** relationships.
+
+#### Invariants
+
+1. A Requirement intended for implementation is objectively testable or explicitly marked as non-verifiable with rationale.
+2. An Acceptance Example identifies the Requirement or Business Rule it covers.
+3. Historical Intent Record Revisions remain visible.
+4. Superseding intent does not erase earlier rationale or decisions.
+
+### 7.7 Collaboration Record Contract
+
+A **Collaboration Record** is a Resource whose Revisions preserve discussion, annotation, review, or collaborative interpretation associated with another Resource, Revision, Region, Relationship, or Publication.
+
+Supported Collaboration Record kinds are:
+
+- Comment;
+- Annotation;
+- Discussion Entry;
+- Review Decision;
+- Follow-up Note.
+
+#### Required revision payload
+
+A Collaboration Record Revision contains:
+
+- author;
+- recorded time;
+- textual or structured content;
+- target identity and optional exact target Revision or Region;
+- collaboration kind;
+- status.
+
+#### Additional kind rules
+
+- A Comment contributes to a discussion.
+- An Annotation refers to a specific target location or object.
+- A Review Decision records approval, rejection, changes requested, or another review outcome.
+- A Follow-up Note records subsequent interpretation, clarification, or action information.
+
+#### Allowed relationships
+
+A Collaboration Record may participate in:
+
+- **Relates To** relationships;
+- **Supports** or **Contradicts** relationships;
+- **Addresses** relationships;
+- **Supersedes** relationships.
+
+#### Invariants
+
+1. A Collaboration Record does not become authoritative source content by default.
+2. Author, time, and target are preserved.
+3. Resolving a discussion does not erase its history.
+4. A Review Decision identifies the exact Revision, Relationship, change, or Publication reviewed.
+
+### 7.8 Governance Record Contract
+
+A **Governance Record** is an immutable or revisioned Resource that records a policy, authorization, consent, controlled disclosure, redaction, retention rule, conflict, or reconciliation decision.
+
+Supported Governance Record kinds are:
+
+- Authorization Policy;
+- Sensitivity Classification;
+- Consent Record;
+- Disclosure Record;
+- Redaction Record;
+- Retention Policy;
+- Lifecycle Policy;
+- Change Set;
+- Conflict;
+- Reconciliation Decision;
+- Publication Assessment;
+- Quality Gate Decision.
+
+#### Required revision payload
+
+A Governance Record Revision contains, as applicable:
+
+- governing rule, finding, or decision;
+- actor or authority;
+- target Resource, Revision, Relationship, Region, Publication, or scope;
+- effective period;
+- status;
+- rationale;
+- conditions and obligations;
+- resulting action or outcome.
+
+#### Additional kind rules
+
+- A Consent Record identifies the consenting party, permitted use, scope, and period.
+- A Disclosure Record identifies recipient, purpose, disclosed content, authority, and time.
+- A Redaction Record identifies source, redaction rule, concealed content scope, and resulting representation.
+- A Conflict records competing changes or rules without discarding either side.
+- A Reconciliation Decision records how a Conflict was resolved and which inputs were retained, rejected, or superseded.
+- A Publication Assessment records readiness checks, approvals, validation findings, and outcome.
+- A Quality Gate Decision records the policy evaluation and whether progression is allowed or blocked.
+
+#### Allowed relationships
+
+A Governance Record may participate in:
+
+- **Relates To** relationships;
+- **Addresses** relationships;
+- **Derived From** relationships;
+- **Supports** or **Contradicts** relationships;
+- **Supersedes** relationships.
+
+#### Invariants
+
+1. Privileged and sensitive actions identify the governing authority.
+2. Consent, disclosure, and redaction preserve exact scope and time.
+3. Conflict and reconciliation records preserve acknowledged alternatives.
+4. Publication and quality-gate decisions identify the evidence and policy evaluated.
+5. Governance history is never silently rewritten.
+
+### 7.9 Party Contract
+
+A **Party** is a Resource representing a person, organization, team, role-bearing group, customer, or automated actor that participates in the domain.
+
+Supported Party kinds are:
+
+- Person;
+- Organization;
+- Team;
+- Customer Organization;
+- Automated Agent.
+
+#### Required revision payload
+
+A Party Revision contains:
+
+- display name or identifier;
+- Party kind;
+- relevant contact or descriptive Metadata where permitted;
+- status;
+- applicable sensitivity and privacy Metadata.
+
+#### Allowed relationships
+
+A Party may participate in:
+
+- **Relates To** relationships;
+- **Addresses** relationships where acting toward a Need or Objective;
+- accountability, participation, authorship, review, approval, consent, and organizational membership relationships;
+- **Supersedes** relationships where one organizational identity replaces another.
+
+#### Roles
+
+A Party may play the role of:
+
+- Contributor;
+- Author;
+- Interview Participant;
+- Interviewer;
+- Reviewer;
+- Approver;
+- Owner;
+- Decision Maker;
+- Consent Grantor;
+- Disclosure Recipient;
+- System Operator.
+
+#### Invariants
+
+1. Roles are contextual and do not permanently redefine the Party.
+2. Sensitive Party information is governed by explicit policy.
+3. Historical participation and accountability remain traceable.
+
+### 7.10 Execution Record Contract
+
+An **Execution Record** is an immutable Resource recording a controlled execution of an executable declaration, specification, generation rule, workflow, or operational instruction.
+
+#### Required payload
+
+An Execution Record contains:
+
+- executable declaration, specification, or rule identity and Revision;
+- target Resource or environment;
+- input identities and Revisions;
+- adapter, interpreter, or tool version;
+- execution environment;
+- authorization context;
+- start and completion times;
+- outcome;
+- produced outputs;
+- logs and diagnostics.
+
+Supported outcomes include:
+
+- Succeeded;
+- Failed;
+- Error;
+- Cancelled;
+- Inconclusive.
+
+#### Allowed relationships
+
+An Execution Record may participate in:
+
+- **Derived From** relationships to exact execution inputs;
+- **Produces** relationships to Generated Outputs;
+- **Relates To** relationships to execution targets;
+- **Supports** or **Contradicts** relationships when the execution is used as Evidence;
+- **Verifies** relationships when the execution performs verification.
+
+#### Invariants
+
+1. Execution is explicit and authorized.
+2. Exact executable source, inputs, environment, and tool versions are recorded.
+3. Execution does not mutate authoritative source without creating a new Revision through a governed change.
+4. Produced outputs remain traceable to the Execution Record.
+5. A completed Execution Record is immutable.
 
 ## 8. Publication Record
 
@@ -382,7 +649,7 @@ Publication succession is expressed through **Supersedes** relationships between
 
 ## 9. Relationship Type Contracts
 
-The model defines six Relationship Type contracts.
+The model defines ten Relationship Type contracts.
 
 ### 9.1 Includes Contract
 
@@ -508,7 +775,7 @@ Any Resources or Revisions allowed by policy.
 
 1. Relates To must not replace a more precise Relationship Type when one exists.
 2. The reason for the relationship is explicit.
-3. Relates To does not imply derivation, evidence, inclusion, or succession.
+3. Relates To does not imply derivation, evidence, inclusion, coverage, verification, intent, production, or succession.
 
 ### 9.6 Supersedes Contract
 
@@ -534,6 +801,137 @@ The earlier Resource, Revision, or Publication.
 2. Supersession is directional.
 3. The target remains historically addressable.
 4. Multiple successors require explicit scope or conflict handling.
+
+### 9.7 Verifies Contract
+
+**Verifies** is a Verification Relationship stating that a Verification Result or qualifying Execution Record objectively evaluates another Resource or Revision.
+
+#### Source
+
+- Verification Result;
+- qualifying Execution Record.
+
+#### Target
+
+- Requirement;
+- Behavioral Requirement;
+- Business Rule;
+- Acceptance Example;
+- Document Revision;
+- Generated Output Revision;
+- Knowledge claim;
+- other explicitly verifiable Resource or Revision.
+
+#### Required data
+
+- verification scope;
+- evaluated Revision;
+- outcome;
+- verification method;
+- recorded time.
+
+#### Invariants
+
+1. The target Revision is explicit when the target is revisioned.
+2. Verifies does not imply a passing result; outcome remains explicit.
+3. Verification history remains visible after later executions.
+4. The inverse phrase “verified by” is a view of this same Relationship, not a separate Relationship Type.
+
+### 9.8 Covers Contract
+
+**Covers** is a Traceability Relationship stating that an Acceptance Example, specification, test, or other verification asset exercises or represents part of an Intent Record.
+
+#### Source
+
+- Acceptance Example;
+- Document Revision playing the role of specification or test;
+- Generated Output playing the role of test asset.
+
+#### Target
+
+- Requirement;
+- Behavioral Requirement;
+- Business Rule;
+- Goal or Objective where justified.
+
+#### Required data
+
+- coverage scope;
+- optional conditions or exclusions.
+
+#### Invariants
+
+1. Coverage does not imply successful verification.
+2. Partial coverage identifies its scope.
+3. Coverage relationships remain traceable to exact source Revisions where applicable.
+
+### 9.9 Addresses Contract
+
+**Addresses** is an Intent Relationship stating that one Resource is intended to respond to, satisfy, reduce, resolve, or advance another Intent Record or Knowledge Record.
+
+#### Source
+
+Examples include:
+
+- Goal;
+- Objective;
+- Requirement;
+- Initiative;
+- Recommendation;
+- Decision;
+- Action;
+- Generated Output;
+- Publication.
+
+#### Target
+
+Examples include:
+
+- Need;
+- Opportunity;
+- Objective;
+- Finding;
+- Insight;
+- Risk;
+- Requirement.
+
+#### Required data
+
+- manner or scope of response;
+- optional expected Outcome.
+
+#### Invariants
+
+1. Addresses expresses intent, not proof of success.
+2. Fulfillment or effectiveness requires Evidence or Verification.
+3. Partial response identifies its scope.
+
+### 9.10 Produces Contract
+
+**Produces** is an Execution Relationship stating that an Execution Record created a Generated Output, Artifact Revision, Verification Result, or other execution result.
+
+#### Source
+
+An Execution Record.
+
+#### Target
+
+- Generated Output Revision;
+- Artifact Revision;
+- Verification Result;
+- other explicitly produced Resource or Revision.
+
+#### Required data
+
+- production role;
+- produced time;
+- optional output name or channel.
+
+#### Invariants
+
+1. The produced target is traceable to the Execution Record.
+2. Production does not make the output authoritative source.
+3. Exact input lineage remains available through Derived From relationships.
 
 ## 10. Content Region
 
@@ -581,9 +979,37 @@ It may record:
 - latest observed target Revision;
 - approval history;
 - resolution condition;
-- conflict condition.
+- conflict condition;
+- pending Update Candidate;
+- propagation policy and history.
 
 A pinned Reference Declaration may require no subscription if all necessary state is contained in the declaration.
+
+### Update Candidate
+
+An Update Candidate identifies a newer qualifying target Revision proposed for adoption by an Approval-Controlled Reference.
+
+It records:
+
+- Reference Subscription;
+- current adopted Revision;
+- proposed Revision;
+- detected time;
+- submitter or detecting agent;
+- review status;
+- decision and rationale.
+
+### Local adaptation
+
+A destination does not directly modify included source content.
+
+A local variation must be represented explicitly as one of:
+
+- a forked Resource or Region linked by **Derived From**;
+- an overlay Resource linked through **Relates To** with an explicit overlay role;
+- a replacement Reference Declaration targeting locally authored content.
+
+This preserves source ownership and prevents ambiguous hidden overrides.
 
 ### Status dimensions
 
@@ -597,9 +1023,34 @@ Reference status is expressed through independent dimensions:
 
 Derived statuses should not be stored when they can be calculated reliably from recorded facts.
 
-## 12. Versioned Resource Graph Projections
+## 12. Metadata and Classification Contract
 
-The Versioned Resource Graph is the complete network of Resources, Revisions, Regions, and Relationships.
+Metadata is structured information describing a Resource, Revision, Relationship, Region, Publication, or other record.
+
+A Metadata Schema defines:
+
+- field identity and name;
+- data type;
+- cardinality;
+- required or optional status;
+- validation rules;
+- applicable Resource Kinds or Relationship Types;
+- sensitivity and indexing behavior.
+
+A Tag is a flexible classification label.
+
+A Classification is a governed category assigned according to a Classification Scheme.
+
+### Invariants
+
+1. Required Metadata is validated before governed operations proceed.
+2. Historical revision Metadata is preserved.
+3. Tags do not replace typed Relationships where domain meaning matters.
+4. Sensitive Metadata follows authorization and disclosure policy.
+
+## 13. Versioned Resource Graph Projections
+
+The Versioned Resource Graph is the complete network of Resources, Revisions, Regions, Relationships, Publications, and immutable records.
 
 Processes use purpose-specific projections.
 
@@ -609,15 +1060,19 @@ Uses Includes relationships and related structural inputs.
 
 ### Provenance graph
 
-Uses Derived From relationships.
+Uses Derived From and Produces relationships.
 
 ### Evidence graph
 
 Uses Supports and Contradicts relationships.
 
+### Intent and traceability graph
+
+Uses Addresses, Covers, Verifies, Supports, Contradicts, and Supersedes relationships.
+
 ### Knowledge graph
 
-Uses Relates To, Supports, Contradicts, and Supersedes relationships.
+Uses Relates To, Supports, Contradicts, Addresses, and Supersedes relationships.
 
 ### Publication graph
 
@@ -625,11 +1080,11 @@ Contains the exact Revisions and Relationships frozen by a Publication.
 
 ### Verification graph
 
-Connects specifications, targets, generated outputs, and Verification Results.
+Connects Intent Records, specifications, targets, Execution Records, Generated Outputs, Verification Results, Covers, and Verifies relationships.
 
 There is no single universal dependency graph. Each graph is a projection for a defined purpose.
 
-## 13. Assembly
+## 14. Assembly
 
 Assembly resolves a selected Document Revision and the Includes relationships reachable from it.
 
@@ -665,9 +1120,29 @@ The Resolution Manifest records:
 4. The Includes graph used by one successful Assembly is acyclic.
 5. Assembly does not mutate source Resources or Revisions.
 
-## 14. Repository and Placement
+## 15. Search and Discovery Projection
 
-Repository is the managed storage environment for Resources, Revisions, Relationships, and Publication records.
+Search is a read projection over authorized Resources, Revisions, Regions, Metadata, and Relationships.
+
+Supported discovery modes include:
+
+- full-text search;
+- Metadata and Tag filtering;
+- Classification filtering;
+- identity lookup;
+- relationship traversal;
+- similarity or analytical discovery where configured.
+
+### Search invariants
+
+1. Search results respect authorization and sensitivity policy.
+2. Search indexes are derived and are not authoritative source.
+3. Stale or incomplete index state must not be presented as authoritative completeness.
+4. Hidden Resources and Relationships are not leaked through result counts, errors, or traversal.
+
+## 16. Repository and Placement
+
+Repository is the managed storage environment for Resources, Revisions, Relationships, Publication records, and immutable event records.
 
 Repository Placement is an effective-dated Structural Relationship between a Resource and a location.
 
@@ -675,24 +1150,24 @@ Moving a Resource creates a new placement relationship or effective period; it d
 
 A Library is a Resource representing a meaningful collection. Library membership is expressed through Structural Relationships.
 
-## 15. Accountability and Policy
+## 17. Accountability and Policy
 
-Contributor, Author, Reviewer, Approver, Owner, and Automated Agent are roles played in context.
+Contributor, Author, Reviewer, Approver, Owner, Interview Participant, Interviewer, Decision Maker, and Automated Agent are roles played by Parties in context.
 
-Accountability is represented through a Relationship between a party and a Resource.
+Accountability is represented through a Relationship between a Party and a Resource.
 
 A Policy Assignment connects:
 
-- a policy;
+- a Governance Record or policy;
 - a Resource or scope;
-- an actor or role;
+- a Party or role;
 - an operation;
 - an effect;
 - an effective period.
 
 Security constrains which graph nodes and edges an actor may observe or use. It does not alter Resource identity.
 
-## 16. Audit Event
+## 18. Audit Event
 
 An Audit Event is an immutable record of a significant action.
 
@@ -702,11 +1177,24 @@ It records:
 - event type;
 - actor;
 - time;
-- affected Resource, Revision, Relationship, or Publication;
+- affected Resource, Revision, Relationship, Publication, or immutable record;
 - outcome;
 - correlation to another event or process.
 
-## 17. Conceptual Diagram
+Auditable events include:
+
+- Resource or Revision creation;
+- Relationship creation or supersession;
+- Reference update detection and adoption;
+- propagation action;
+- conflict and reconciliation;
+- execution;
+- verification;
+- publication assessment and release;
+- privileged access;
+- consent, disclosure, and redaction action.
+
+## 19. Conceptual Diagram
 
 ```mermaid
 classDiagram
@@ -729,6 +1217,11 @@ classDiagram
     class Document
     class Artifact
     class KnowledgeRecord
+    class IntentRecord
+    class CollaborationRecord
+    class GovernanceRecord
+    class Party
+    class ExecutionRecord
     class GeneratedOutput
     class VerificationResult
     class Publication
@@ -744,17 +1237,24 @@ classDiagram
     Resource <|-- Document
     Resource <|-- Artifact
     Resource <|-- KnowledgeRecord
+    Resource <|-- IntentRecord
+    Resource <|-- CollaborationRecord
+    Resource <|-- GovernanceRecord
+    Resource <|-- Party
+    Resource <|-- ExecutionRecord
     Resource <|-- GeneratedOutput
     Resource <|-- VerificationResult
 
     Document "1" --> "0..*" ContentRegion : defines
     ContentRegion "1" --> "0..*" RegionOccurrence : occurs in revisions
     Publication "1" --> "1..*" ResourceRevision : freezes
+    ExecutionRecord "1" --> "0..*" GeneratedOutput : produces
+    VerificationResult "1" --> "1..*" IntentRecord : verifies
 ```
 
 The diagram is conceptual and does not prescribe storage, inheritance, aggregate, or service design.
 
-## 18. Principal Invariants
+## 20. Principal Invariants
 
 1. Every Resource has stable identity independent of location.
 2. Every durable Resource state is represented by an immutable Revision.
@@ -768,14 +1268,16 @@ The diagram is conceptual and does not prescribe storage, inheritance, aggregate
 10. Approval-Controlled References never adopt changes without approval.
 11. Successful Assembly has no unresolved Includes relationships or inclusion cycles.
 12. Every Assembly records the exact Revisions used.
-13. Publications and completed Verification Results are immutable.
-14. Provenance is preserved through Derived From relationships.
+13. Publications, completed Execution Records, and completed Verification Results are immutable.
+14. Provenance is preserved through Derived From and Produces relationships.
 15. Evidence is expressed through Supports and Contradicts relationships.
-16. Repository movement does not break identity or Relationships.
-17. Ordinary prose is not executed implicitly.
-18. No acknowledged work is silently discarded.
+16. Requirements and examples are traceable through Addresses, Covers, and Verifies relationships.
+17. Repository movement does not break identity or Relationships.
+18. Ordinary prose is not executed implicitly.
+19. Consent, disclosure, redaction, and conflict resolution preserve exact scope and history.
+20. No acknowledged work is silently discarded.
 
-## 19. Open Questions
+## 21. Open Questions
 
 1. Which additional Resource Kinds justify formal contracts?
 2. Which additional Relationship Types justify formal contracts rather than Relates To?
@@ -783,12 +1285,14 @@ The diagram is conceptual and does not prescribe storage, inheritance, aggregate
 4. What revision-selection rules are permitted for Live References?
 5. How are Region split, merge, fork, replacement, and retirement represented in authoring tools?
 6. What is the numbering scope for Publications?
-7. Which relationships are required before a Finding, Decision, or Publication is considered valid?
+7. Which Relationships are required before a Finding, Decision, Requirement, or Publication is considered valid?
 8. How are repository commits mapped to Resource Revisions?
 9. Which graph projections are persisted and which are derived?
 10. How are contract changes versioned and governed?
+11. Which Governance Record kinds should remain revisioned Resources and which should be immutable records?
+12. Which metric definitions and quality-gate policies require their own Resource Kind contracts?
 
-## 20. Traceability
+## 22. Traceability
 
 This model is governed by and derived from:
 
