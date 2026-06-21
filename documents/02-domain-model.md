@@ -798,5 +798,6 @@ This model is governed by and derived from:
 - [Referenced Content Management Vision](./00.02-Partial-References.md)
 - [Documentation as Executable Code](./00.03.Literate-Programming.md)
 - [Documentation as Test](./00.04.FitNesse.md)
+- [Enterprise Work Intelligence System](.00.01.ProjectManagement.md)
 
 Changes that conflict with the Project Constitution require a constitutional amendment. Changes that introduce or redefine canonical terms require a corresponding update to the Domain Glossary.
