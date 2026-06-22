@@ -31,13 +31,19 @@
     "documents/07-user-story-map.md",
     "documents/08-user-stories.md",
     "documents/08.01-hypertext-user-stories.md",
+    "documents/08.02-human-comprehension-user-stories.md",
+    "documents/08.03-attention-governance-user-stories.md",
+    "documents/08.04-stewardship-cost-user-stories.md",
     "documents/09-requirements-ears.md",
     "documents/09.10-hypertext-requirements-ears.md",
+    "documents/09.11-comprehension-attention-stewardship-requirements-ears.md",
     "documents/10-domain-scenarios.md",
     "documents/10.10-hypertext-architecture-decision-backlog.md",
     "documents/11-acceptance-specifications.md",
     "documents/11.10-hypertext-acceptance-specifications.md",
-    "documents/12-constitutional-traceability-ledger.md"
+    "documents/11.11-comprehension-attention-stewardship-acceptance-specifications.md",
+    "documents/12-constitutional-traceability-ledger.md",
+    "documents/13.01-adr-ht-001-durable-identity-strategy.md"
   ],
   "principles": [
     {
@@ -88,9 +94,9 @@
       "id": "HT-DERIVATIVE-SOURCE",
       "name": "Derivative and source distinction",
       "status": "Specified",
-      "stories": ["US-038"],
-      "requirements": ["REQ-HT-005"],
-      "acceptance": ["AS-012"],
+      "stories": ["US-038", "US-051"],
+      "requirements": ["REQ-HT-005", "REQ-HT-025", "REQ-HT-028"],
+      "acceptance": ["AS-012", "AS-018"],
       "adrs": ["ADR-HT-002"],
       "verification": [],
       "remaining_gap": "Approve canonical semantic serialization and representation metadata."
@@ -99,9 +105,9 @@
       "id": "HT-DISAGREEMENT",
       "name": "Disagreement and epistemic status",
       "status": "Specified",
-      "stories": ["US-040", "US-042"],
-      "requirements": ["REQ-HT-008", "REQ-HT-012"],
-      "acceptance": ["AS-011", "AS-012"],
+      "stories": ["US-040", "US-042", "US-049"],
+      "requirements": ["REQ-HT-008", "REQ-HT-012", "REQ-HT-025"],
+      "acceptance": ["AS-011", "AS-012", "AS-018"],
       "adrs": ["ADR-HT-007"],
       "verification": [],
       "remaining_gap": "Approve contextual authority and epistemic-status representation."
@@ -110,9 +116,9 @@
       "id": "HT-OMISSION-PROVENANCE",
       "name": "Omission-aware provenance",
       "status": "Specified",
-      "stories": ["US-042", "US-044"],
-      "requirements": ["REQ-HT-012", "REQ-HT-013", "REQ-HT-014"],
-      "acceptance": ["AS-012"],
+      "stories": ["US-042", "US-044", "US-051"],
+      "requirements": ["REQ-HT-012", "REQ-HT-013", "REQ-HT-014", "REQ-HT-028"],
+      "acceptance": ["AS-012", "AS-018"],
       "adrs": ["ADR-HT-008"],
       "verification": [],
       "remaining_gap": "Approve completeness and inference-risk policy."
@@ -121,9 +127,9 @@
       "id": "HT-GOVERNED-HISTORY",
       "name": "Governed history",
       "status": "Specified",
-      "stories": ["US-043"],
-      "requirements": ["REQ-HT-015", "REQ-HT-016"],
-      "acceptance": ["AS-013"],
+      "stories": ["US-043", "US-058"],
+      "requirements": ["REQ-HT-015", "REQ-HT-016", "REQ-HT-038"],
+      "acceptance": ["AS-013", "AS-020"],
       "adrs": ["ADR-HT-010"],
       "verification": [],
       "remaining_gap": "Define pilot-specific legal, consent, retention, and erasure policy."
@@ -131,24 +137,24 @@
     {
       "id": "HT-HUMAN-COMPREHENSION",
       "name": "Human comprehension",
-      "status": "Uncovered",
-      "stories": [],
-      "requirements": [],
-      "acceptance": [],
+      "status": "Specified",
+      "stories": ["US-049", "US-050", "US-051"],
+      "requirements": ["REQ-HT-024", "REQ-HT-025", "REQ-HT-026", "REQ-HT-027", "REQ-HT-028"],
+      "acceptance": ["AS-018"],
       "adrs": [],
       "verification": [],
-      "remaining_gap": "Add dedicated stories, requirements, usability scenarios, and explanation-quality measures."
+      "remaining_gap": "Define pilot usability measures and collect verification evidence."
     },
     {
       "id": "HT-ATTENTION-GOVERNANCE",
       "name": "Attention governance",
-      "status": "Uncovered",
-      "stories": ["US-048"],
-      "requirements": ["REQ-HT-022"],
-      "acceptance": [],
+      "status": "Specified",
+      "stories": ["US-048", "US-052", "US-053", "US-054"],
+      "requirements": ["REQ-HT-022", "REQ-HT-029", "REQ-HT-030", "REQ-HT-031", "REQ-HT-032"],
+      "acceptance": ["AS-019"],
       "adrs": [],
       "verification": [],
-      "remaining_gap": "Add acceptance scenarios and pilot notification policy."
+      "remaining_gap": "Define pilot notification policy and collect verification evidence."
     },
     {
       "id": "HT-PORTABILITY",
@@ -181,15 +187,15 @@
       "acceptance": ["AS-010"],
       "adrs": ["ADR-HT-001", "ADR-HT-004"],
       "verification": [],
-      "remaining_gap": "Approve architecture and add conformance checks."
+      "remaining_gap": "ADR-HT-001 is accepted; remaining graph ADRs and conformance checks are open."
     },
     {
       "id": "HT-EXPLAINABLE-CHANGE",
       "name": "Explainable consequential change",
       "status": "Specified",
-      "stories": ["US-047"],
-      "requirements": ["REQ-HT-021"],
-      "acceptance": ["AS-016"],
+      "stories": ["US-047", "US-049"],
+      "requirements": ["REQ-HT-021", "REQ-HT-024"],
+      "acceptance": ["AS-016", "AS-018"],
       "adrs": [],
       "verification": [],
       "remaining_gap": "Define change-explanation schema and enforcement."
@@ -197,24 +203,24 @@
     {
       "id": "HT-STEWARDSHIP-COST",
       "name": "Stewardship cost",
-      "status": "Uncovered",
-      "stories": [],
-      "requirements": [],
-      "acceptance": [],
+      "status": "Specified",
+      "stories": ["US-055", "US-056", "US-057", "US-058"],
+      "requirements": ["REQ-HT-033", "REQ-HT-034", "REQ-HT-035", "REQ-HT-036", "REQ-HT-037", "REQ-HT-038", "REQ-HT-039"],
+      "acceptance": ["AS-020"],
       "adrs": [],
       "verification": [],
-      "remaining_gap": "Add stories, requirements, acceptance scenarios, and measurable stewardship signals."
+      "remaining_gap": "Define pilot review policy, cost signals, and collect verification evidence."
     },
     {
       "id": "HT-CONSTITUTIONAL-OPERATIONALIZATION",
       "name": "Constitutional operationalization",
       "status": "Specified",
-      "stories": ["US-036", "US-037", "US-038", "US-039", "US-040", "US-041", "US-042", "US-043", "US-044", "US-045", "US-046", "US-047", "US-048"],
+      "stories": ["US-036", "US-037", "US-038", "US-039", "US-040", "US-041", "US-042", "US-043", "US-044", "US-045", "US-046", "US-047", "US-048", "US-049", "US-050", "US-051", "US-052", "US-053", "US-054", "US-055", "US-056", "US-057", "US-058"],
       "requirements": ["REQ-HT-023"],
       "acceptance": ["AS-017"],
       "adrs": ["ADR-HT-013"],
       "verification": [],
-      "remaining_gap": "Adopt repository validator and later connect current verification evidence."
+      "remaining_gap": "Confirm workflow execution, require the validation check, and later connect current verification evidence."
     }
   ]
 }
