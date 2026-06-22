@@ -1,8 +1,8 @@
 # Organizational Knowledge and Work System
 
-This repository contains the constitutional, domain, workflow, requirements, and acceptance specifications for a system that preserves organizational knowledge, coordinates work, and learns from the relationship among evidence, decisions, plans, execution, investments, outputs, and outcomes.
+This repository contains the constitutional, domain, workflow, requirements, architecture, and acceptance specifications for a system that preserves organizational knowledge, coordinates work, and learns from the relationship among evidence, decisions, plans, execution, investments, outputs, and outcomes.
 
-The repository is currently **specified but not yet implemented**. Documents describe intended behavior and constraints; they are not evidence that the system has been designed, built, or verified.
+The repository is currently **specified with initial architecture decisions, but not yet implemented**. Documents describe intended behavior and constraints; they are not evidence that the system has been built or verified.
 
 ## Constitutional authority
 
@@ -42,16 +42,25 @@ A downstream story, requirement, design, implementation, projection, or automate
 - [`documents/07-user-story-map.md`](documents/07-user-story-map.md)
 - [`documents/08-user-stories.md`](documents/08-user-stories.md)
 - [`documents/08.01-hypertext-user-stories.md`](documents/08.01-hypertext-user-stories.md)
+- [`documents/08.02-human-comprehension-user-stories.md`](documents/08.02-human-comprehension-user-stories.md)
+- [`documents/08.03-attention-governance-user-stories.md`](documents/08.03-attention-governance-user-stories.md)
+- [`documents/08.04-stewardship-cost-user-stories.md`](documents/08.04-stewardship-cost-user-stories.md)
 
 ### 4. Formal specification and validation
 
 - [`documents/09-requirements-ears.md`](documents/09-requirements-ears.md)
 - [`documents/09.10-hypertext-requirements-ears.md`](documents/09.10-hypertext-requirements-ears.md)
+- [`documents/09.11-comprehension-attention-stewardship-requirements-ears.md`](documents/09.11-comprehension-attention-stewardship-requirements-ears.md)
 - [`documents/10-domain-scenarios.md`](documents/10-domain-scenarios.md)
-- [`documents/10.10-hypertext-architecture-decision-backlog.md`](documents/10.10-hypertext-architecture-decision-backlog.md)
 - [`documents/11-acceptance-specifications.md`](documents/11-acceptance-specifications.md)
 - [`documents/11.10-hypertext-acceptance-specifications.md`](documents/11.10-hypertext-acceptance-specifications.md)
+- [`documents/11.11-comprehension-attention-stewardship-acceptance-specifications.md`](documents/11.11-comprehension-attention-stewardship-acceptance-specifications.md)
 - [`documents/12-constitutional-traceability-ledger.md`](documents/12-constitutional-traceability-ledger.md)
+
+### 5. Architecture decisions
+
+- [`documents/10.10-hypertext-architecture-decision-backlog.md`](documents/10.10-hypertext-architecture-decision-backlog.md)
+- [`documents/13.01-adr-ht-001-durable-identity-strategy.md`](documents/13.01-adr-ht-001-durable-identity-strategy.md)
 
 ## Core value stream
 
@@ -88,23 +97,26 @@ The central distinctions are:
 | Canonical language | Established; consolidation remains |
 | Context map and ownership | Established |
 | Domain models | Established for the initial learning loop; some contexts remain less detailed |
-| User stories | Specified |
+| User stories | Specified, including all current constitutional principles |
 | EARS requirements | Specified |
 | Acceptance specifications | Specified |
-| Architecture decisions | Backlog only |
+| Architecture decisions | ADR-HT-001 accepted; remaining foundational ADRs open |
 | Implementation | Not demonstrated |
-| Automated verification | Initial repository validation only |
+| Automated verification | Repository validator exists; workflow execution still needs confirmation |
 | Pilot evidence | Not yet recorded |
 
 See [`documents/12-constitutional-traceability-ledger.md`](documents/12-constitutional-traceability-ledger.md) for principle-level status.
 
 ## Next delivery sequence
 
-1. Maintain machine-verifiable documentation traceability.
-2. Close uncovered constitutional coverage for human comprehension, attention governance, and stewardship cost.
-3. Approve foundational architecture decisions, beginning with durable identity.
-4. Define semantic contracts between bounded contexts.
-5. Implement the first walking slice:
+1. Confirm the documentation-validation workflow executes on `main` and configure it as a required check.
+2. Approve the remaining graph and reference foundation decisions:
+   - ADR-HT-002 — Canonical Semantic Serialization
+   - ADR-HT-003 — Content Region Anchoring
+   - ADR-HT-004 — Relationship Persistence and Lifecycle
+   - ADR-HT-005 — Backlink and Reverse-Dependency Indexing
+3. Define semantic contracts between bounded contexts for the first walking slice.
+4. Implement the first walking slice:
 
 ```text
 Source Evidence
@@ -114,7 +126,8 @@ Source Evidence
 → Authorized Decision
 ```
 
-6. Demonstrate authorization-aware backlinks, one linear Trail, omission-aware provenance, denial of unauthorized decisions, and navigation back to exact Evidence.
+5. Demonstrate durable identity, authorization-aware backlinks, one linear Trail, omission-aware provenance, denial of unauthorized decisions, and navigation back to exact Evidence.
+6. Record verification evidence before changing any constitutional principle to `Verified`.
 
 ## Documentation validation
 
