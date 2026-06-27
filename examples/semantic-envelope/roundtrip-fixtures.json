@@ -1,0 +1,149 @@
+[
+  {
+    "name": "resource-revision",
+    "envelope": {
+      "contract": "okw.resource-revision",
+      "contract_version": "1.0.0",
+      "identity": {
+        "id": "01906c68-0fc1-7b16-bb5a-e861428a1377",
+        "kind": "ResourceRevision",
+        "owning_context": "KnowledgeAndProvenance",
+        "resource_id": "01906c67-fc36-7dc8-b09e-cac80e6de118"
+      },
+      "recorded_at": "2026-06-27T18:30:00Z",
+      "payload": {
+        "resource_kind": "Finding",
+        "epistemic_status": "Finding",
+        "statement": "Interview participants experience inconsistent approval guidance.",
+        "confidence": {
+          "classification": "Moderate",
+          "basis": "Three independent interviews"
+        }
+      },
+      "provenance": {
+        "created_by": {
+          "id": "01906c68-12b4-7dd1-b649-0f606babc501",
+          "kind": "Party",
+          "owning_context": "IdentityAccessGovernance"
+        },
+        "source_references": [
+          {
+            "id": "01906c68-2471-7dd5-87ae-05c8aa8ecf81",
+            "kind": "ContentRegion",
+            "owning_context": "DocumentAuthoring"
+          }
+        ],
+        "transformations": ["Thematic synthesis"],
+        "selection_rules": [],
+        "material_omissions": [],
+        "assumptions": [],
+        "tool_versions": [],
+        "limitations": ["Small interview sample"]
+      },
+      "extensions": {}
+    },
+    "expected_sha256": "cb225ed80c13c3d0dc676c6e20667ff7f601d66c4b3693d88472d43c01b84cdc"
+  },
+  {
+    "name": "relationship",
+    "envelope": {
+      "contract": "okw.relationship",
+      "contract_version": "1.0.0",
+      "identity": {
+        "id": "01906c68-3611-76a2-9ba7-2a9eb1d15ac3",
+        "kind": "Relationship",
+        "owning_context": "KnowledgeAndProvenance"
+      },
+      "recorded_at": "2026-06-27T18:32:00Z",
+      "payload": {
+        "relationship_type": "Supports",
+        "source": {
+          "id": "01906c68-2471-7dd5-87ae-05c8aa8ecf81",
+          "kind": "ContentRegion",
+          "owning_context": "DocumentAuthoring"
+        },
+        "target": {
+          "id": "01906c68-0fc1-7b16-bb5a-e861428a1377",
+          "kind": "ResourceRevision",
+          "owning_context": "KnowledgeAndProvenance"
+        },
+        "intended_meaning": "The interview excerpt contributes evidence for the Finding.",
+        "selection": {"mode": "Pinned"}
+      },
+      "provenance": {
+        "created_by": {
+          "id": "01906c68-12b4-7dd1-b649-0f606babc501",
+          "kind": "Party",
+          "owning_context": "IdentityAccessGovernance"
+        },
+        "source_references": [],
+        "transformations": [],
+        "selection_rules": [],
+        "material_omissions": [],
+        "assumptions": [],
+        "tool_versions": [],
+        "limitations": []
+      },
+      "extensions": {}
+    },
+    "expected_sha256": "b06294ac1bbe1858cc3db454183692d2270492a709c6832037e0994386366528"
+  },
+  {
+    "name": "trail-revision",
+    "envelope": {
+      "contract": "okw.trail-revision",
+      "contract_version": "1.0.0",
+      "identity": {
+        "id": "01906c68-4517-7ded-89b5-acde49c69c86",
+        "kind": "TrailRevision",
+        "owning_context": "KnowledgeAndProvenance",
+        "trail_id": "01906c68-42de-7cf2-9a02-b4af2d21cff1"
+      },
+      "recorded_at": "2026-06-27T18:35:00Z",
+      "payload": {
+        "audience": "Decision reviewers",
+        "purpose": "Explain the evidence-to-recommendation reasoning path.",
+        "steps": [
+          {
+            "step_id": "01906c68-482b-752a-a746-c8124269ce42",
+            "target": {
+              "id": "01906c68-2471-7dd5-87ae-05c8aa8ecf81",
+              "kind": "ContentRegion",
+              "owning_context": "DocumentAuthoring"
+            },
+            "selection": {"mode": "Pinned"},
+            "annotation": "Direct interview evidence"
+          },
+          {
+            "step_id": "01906c68-4ac4-7f93-b39c-3e8bd8eae59a",
+            "target": {
+              "id": "01906c68-0fc1-7b16-bb5a-e861428a1377",
+              "kind": "ResourceRevision",
+              "owning_context": "KnowledgeAndProvenance"
+            },
+            "selection": {"mode": "Pinned"},
+            "annotation": "Synthesized Finding"
+          }
+        ],
+        "known_omissions": [],
+        "limitations": ["Does not include later implementation evidence"]
+      },
+      "provenance": {
+        "created_by": {
+          "id": "01906c68-12b4-7dd1-b649-0f606babc501",
+          "kind": "Party",
+          "owning_context": "IdentityAccessGovernance"
+        },
+        "source_references": [],
+        "transformations": [],
+        "selection_rules": ["Author-selected explanatory order"],
+        "material_omissions": [],
+        "assumptions": [],
+        "tool_versions": [],
+        "limitations": []
+      },
+      "extensions": {}
+    },
+    "expected_sha256": "1f65dec390a884177ea5fbd1b376bffacb9feca239d974a28be2b64bcfca698c"
+  }
+]
