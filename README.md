@@ -1,10 +1,35 @@
 # Organizational Knowledge and Work System
 
-This repository specifies a system for preserving organizational knowledge, coordinating work, finding changing information, and managing many input and output channels.
+This repository defines and implements a system for preserving organizational knowledge, coordinating work, finding changing information, and connecting evidence, decisions, plans, execution, deliverables, measurements, outcomes, and learning.
 
-The repository describes intended behavior. It does not demonstrate that the system is implemented or verified.
+## Current delivery status
 
-## Constitutional authority
+Slices 1, 2, and 4 are recorded as coded. They are classified as **coded but not accepted** until reproducible evidence demonstrates conformance with the current requirements, acceptance specifications, authority rules, revision semantics, and provenance rules.
+
+Slice 3 is the next construction priority because it closes the missing path between approved plans and produced deliverables.
+
+| Slice | Capability | Planning state |
+|---|---|---|
+| 1 | Evidence to Decision | Coded; verification packet required |
+| 2 | Decision to Planned Work | Coded; verification packet required |
+| 3 | Planned Work to Deliverable | Planned after Life Cycle Architecture approval |
+| 4 | Deliverable to Outcome Review | Coded; verification packet required |
+| 5 | Learning to Adaptation | Planned after the Slices 1–4 release candidate |
+| 6 | Reproducible Publication | Deferred extension spiral |
+| 7 | Minimal Investment Traceability | Deferred extension spiral |
+
+## Start here
+
+### Delivery and implementation
+
+1. [`planning/README.md`](planning/README.md) — delivery-control index.
+2. [`planning/boehm-lifecycle.md`](planning/boehm-lifecycle.md) — Boehm risk-driven lifecycle and anchor points.
+3. [`planning/phase-plan.md`](planning/phase-plan.md) — phased implementation plan.
+4. [`planning/deliverables.json`](planning/deliverables.json) — machine-readable deliverable ledger.
+5. [`planning/risks.json`](planning/risks.json) — machine-readable risk register.
+6. [`documents/06-thin-vertical-slices.md`](documents/06-thin-vertical-slices.md) — user-visible slice definitions.
+
+### Constitutional authority
 
 1. [`documents/00-project-constitution.md`](documents/00-project-constitution.md)
 2. [`documents/00.05-constitution-amendment-context-and-delivery.md`](documents/00.05-constitution-amendment-context-and-delivery.md)
@@ -14,7 +39,38 @@ The repository describes intended behavior. It does not demonstrate that the sys
 6. [`documents/00.10-literate-operations-and-contract-evolution-amendment.md`](documents/00.10-literate-operations-and-contract-evolution-amendment.md)
 7. [`documents/00.07-constitutional-amendment-index.md`](documents/00.07-constitutional-amendment-index.md)
 
-Downstream stories, requirements, designs, projections, and implementations do not override constitutional authority.
+Downstream stories, requirements, designs, plans, projections, and implementations do not override constitutional authority.
+
+## Repository organization
+
+| Path | Purpose |
+|---|---|
+| [`documents/`](documents/) | Normative constitution, language, models, stories, requirements, acceptance specifications, ADRs, and traceability narratives |
+| [`planning/`](planning/) | Risk-driven phases, deliverables, gate rules, templates, and active risks |
+| [`traceability/`](traceability/) | Machine-readable constitutional coverage ledgers |
+| [`scripts/`](scripts/) | Documentation and delivery-plan validation |
+| [`.github/workflows/`](.github/workflows/) | Validation on direct pushes to `main` and pull requests |
+
+## Boehm phase map
+
+The implementation plan uses risk-driven spiral cycles and three commitment anchors:
+
+- **LCO — Life Cycle Objectives:** establish stakeholder win conditions, release boundaries, alternatives, constraints, and a truthful baseline.
+- **LCA — Life Cycle Architecture:** accept the shared architecture and retire the major identity, revision, authorization, persistence, integration, and recovery risks.
+- **IOC — Initial Operational Capability:** operate a bounded, supported pilot and decide whether to continue, redirect, hold, or stop.
+
+```text
+P0 LCO baseline
+→ P1 verify coded Slices 1, 2, and 4
+→ P2 LCA
+→ P3 implement Slice 3
+→ P4 integrate and accept Slices 1–4
+→ P5 implement Slice 5
+→ P6 IOC pilot
+→ P7 separately evaluate Slices 6 and 7
+```
+
+A phase passes only when its required evidence is accepted. Code presence alone is not an exit criterion.
 
 ## Reading paths
 
@@ -55,16 +111,13 @@ Downstream stories, requirements, designs, projections, and implementations do n
 - [`documents/11.23c-narrative.md`](documents/11.23c-narrative.md)
 - [`documents/12.03.md`](documents/12.03.md)
 
-## Maturity
-
-Constitutional language, stories, requirements, and acceptance specifications are present. Most architecture decisions remain proposed. Implementation and pilot evidence are not demonstrated.
-
 ## Validation
 
-Run the multi-ledger validator:
+Run:
 
 ```bash
 python scripts/validate_all_documentation.py
+python scripts/validate_delivery_plan.py
 ```
 
-Machine-readable coverage is under [`traceability/`](traceability/). The legacy single-ledger validator remains available for compatibility.
+The first command validates the constitutional and documentation ledgers. The second validates phase, deliverable, dependency, and risk references. Neither validator substitutes for review of implementation evidence.
