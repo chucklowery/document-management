@@ -1,0 +1,148 @@
+[
+  {
+    "name": "insertion-before-region",
+    "source": {
+      "blocks": [
+        {"id": "01906e00-0001-7000-8000-000000000001", "text": "Introduction"},
+        {"id": "01906e00-0001-7000-8000-000000000002", "text": "Participants described inconsistent approval guidance."}
+      ],
+      "anchor": {
+        "block_id": "01906e00-0001-7000-8000-000000000002",
+        "exact_quote": "Participants described inconsistent approval guidance."
+      }
+    },
+    "target": {
+      "blocks": [
+        {"id": "01906e00-0001-7000-8000-000000000003", "text": "Executive summary"},
+        {"id": "01906e00-0001-7000-8000-000000000001", "text": "Introduction"},
+        {"id": "01906e00-0001-7000-8000-000000000002", "text": "Participants described inconsistent approval guidance."}
+      ],
+      "lineage": {}
+    },
+    "expected": {
+      "status": "Relocated",
+      "block_id": "01906e00-0001-7000-8000-000000000002"
+    }
+  },
+  {
+    "name": "content-edit-preserves-block-identity",
+    "source": {
+      "blocks": [
+        {"id": "01906e00-0002-7000-8000-000000000001", "text": "Three participants described inconsistent approval guidance."}
+      ],
+      "anchor": {
+        "block_id": "01906e00-0002-7000-8000-000000000001",
+        "exact_quote": "Three participants described inconsistent approval guidance."
+      }
+    },
+    "target": {
+      "blocks": [
+        {"id": "01906e00-0002-7000-8000-000000000001", "text": "Five participants described inconsistent approval guidance."}
+      ],
+      "lineage": {}
+    },
+    "expected": {
+      "status": "Modified",
+      "block_id": "01906e00-0002-7000-8000-000000000001"
+    }
+  },
+  {
+    "name": "unique-exact-quote-recovery",
+    "source": {
+      "blocks": [
+        {"id": "01906e00-0003-7000-8000-000000000001", "text": "Approval guidance differed across teams."}
+      ],
+      "anchor": {
+        "block_id": "01906e00-0003-7000-8000-000000000001",
+        "exact_quote": "Approval guidance differed across teams."
+      }
+    },
+    "target": {
+      "blocks": [
+        {"id": "01906e00-0003-7000-8000-000000000002", "text": "Background"},
+        {"id": "01906e00-0003-7000-8000-000000000003", "text": "Approval guidance differed across teams."}
+      ],
+      "lineage": {}
+    },
+    "expected": {
+      "status": "Recovered",
+      "block_id": "01906e00-0003-7000-8000-000000000003"
+    }
+  },
+  {
+    "name": "duplicate-quote-is-ambiguous",
+    "source": {
+      "blocks": [
+        {"id": "01906e00-0004-7000-8000-000000000001", "text": "Approval required."}
+      ],
+      "anchor": {
+        "block_id": "01906e00-0004-7000-8000-000000000001",
+        "exact_quote": "Approval required."
+      }
+    },
+    "target": {
+      "blocks": [
+        {"id": "01906e00-0004-7000-8000-000000000002", "text": "Approval required."},
+        {"id": "01906e00-0004-7000-8000-000000000003", "text": "Approval required."}
+      ],
+      "lineage": {}
+    },
+    "expected": {
+      "status": "Ambiguous",
+      "block_id": null
+    }
+  },
+  {
+    "name": "explicit-deletion",
+    "source": {
+      "blocks": [
+        {"id": "01906e00-0005-7000-8000-000000000001", "text": "Deprecated instruction."}
+      ],
+      "anchor": {
+        "block_id": "01906e00-0005-7000-8000-000000000001",
+        "exact_quote": "Deprecated instruction."
+      }
+    },
+    "target": {
+      "blocks": [],
+      "lineage": {
+        "01906e00-0005-7000-8000-000000000001": {"operation": "deleted", "targets": []}
+      }
+    },
+    "expected": {
+      "status": "Deleted",
+      "block_id": null
+    }
+  },
+  {
+    "name": "explicit-split",
+    "source": {
+      "blocks": [
+        {"id": "01906e00-0006-7000-8000-000000000001", "text": "First condition. Second condition."}
+      ],
+      "anchor": {
+        "block_id": "01906e00-0006-7000-8000-000000000001",
+        "exact_quote": "First condition. Second condition."
+      }
+    },
+    "target": {
+      "blocks": [
+        {"id": "01906e00-0006-7000-8000-000000000002", "text": "First condition."},
+        {"id": "01906e00-0006-7000-8000-000000000003", "text": "Second condition."}
+      ],
+      "lineage": {
+        "01906e00-0006-7000-8000-000000000001": {
+          "operation": "split",
+          "targets": [
+            "01906e00-0006-7000-8000-000000000002",
+            "01906e00-0006-7000-8000-000000000003"
+          ]
+        }
+      }
+    },
+    "expected": {
+      "status": "Split",
+      "block_id": null
+    }
+  }
+]
