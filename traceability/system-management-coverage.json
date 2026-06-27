@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "project": "Organizational Knowledge and Work System",
+  "required_documents": [
+    "documents/00.08-information-retrieval-and-system-management-amendment.md",
+    "documents/01.11-information-retrieval-and-system-management-canonical-terms.md",
+    "documents/02.11-information-retrieval-and-system-management-domain-model.md",
+    "documents/03.10-information-access-and-system-operations-context-extension.md",
+    "documents/05.02-information-retrieval-and-system-management-role-extension.md",
+    "documents/08.05-information-retrieval-and-system-management-user-stories.md",
+    "documents/09.12-information-retrieval-requirements-ears.md",
+    "documents/09.13-change-processing-and-consistency-requirements-ears.md",
+    "documents/09.14-input-output-and-delivery-requirements-ears.md",
+    "documents/09.15-operations-and-recovery-requirements-ears.md",
+    "documents/09.16-derived-store-security-requirements-ears.md",
+    "documents/10.11-information-retrieval-and-system-management-architecture-decision-backlog.md",
+    "documents/11.12-retrieval-acceptance-specifications.md",
+    "documents/11.13-feedback-acceptance-specifications.md",
+    "documents/11.14-input-processing-acceptance-specifications.md",
+    "documents/11.15-propagation-and-concurrency-acceptance-specifications.md",
+    "documents/11.16-output-and-security-acceptance-specifications.md",
+    "documents/12.01-retrieval-traceability.md",
+    "documents/12.02-system-management-traceability.md",
+    "documents/opinions/OP-SM-001-feedback-speed-and-system-delays.md",
+    "documents/opinions/OP-SM-002-retrieval-boundaries-and-evolutionary-design.md",
+    "documents/opinions/OP-SM-003-ranked-lists-and-plural-hypertext.md"
+  ],
+  "principles": [
+    {
+      "id": "SM-P-001",
+      "name": "Retrieval effectiveness",
+      "status": "Specified",
+      "stories": ["US-059", "US-060", "US-061"],
+      "requirements": ["REQ-IR-001", "REQ-IR-002", "REQ-IR-003", "REQ-IR-004", "REQ-IR-005", "REQ-IR-006", "REQ-IR-007", "REQ-IR-008"],
+      "acceptance": ["AS-021", "AS-022"],
+      "adrs": ["ADR-IR-001", "ADR-IR-009"],
+      "verification": [],
+      "remaining_gap": "Approve retrieval architecture and collect task-based verification evidence."
+    },
+    {
+      "id": "SM-P-002",
+      "name": "Derived access structures",
+      "status": "Specified",
+      "stories": ["US-060", "US-068", "US-071"],
+      "requirements": ["REQ-IR-003", "REQ-IR-005", "REQ-IR-006", "REQ-SM-008", "REQ-IO-004"],
+      "acceptance": ["AS-021", "AS-025", "AS-027"],
+      "adrs": ["ADR-IR-001", "ADR-IR-010"],
+      "verification": [],
+      "remaining_gap": "Approve derived-store and reconstruction architecture."
+    },
+    {
+      "id": "SM-P-003",
+      "name": "Explicit recoverable propagation",
+      "status": "Specified",
+      "stories": ["US-065", "US-066", "US-067", "US-068", "US-074"],
+      "requirements": ["REQ-SM-001", "REQ-SM-002", "REQ-SM-003", "REQ-SM-004", "REQ-SM-005", "REQ-SM-006", "REQ-SM-007", "REQ-SM-008", "REQ-SM-009", "REQ-SM-010", "REQ-SM-011", "REQ-OP-008"],
+      "acceptance": ["AS-024", "AS-025"],
+      "adrs": ["ADR-IR-002", "ADR-IR-010"],
+      "verification": [],
+      "remaining_gap": "Approve event and reconstruction architecture and run recovery exercises."
+    },
+    {
+      "id": "SM-P-004",
+      "name": "Governed inputs",
+      "status": "Specified",
+      "stories": ["US-065", "US-066"],
+      "requirements": ["REQ-SM-001", "REQ-SM-002", "REQ-SM-003", "REQ-SM-004", "REQ-SM-005", "REQ-SM-006", "REQ-SM-007", "REQ-IO-001", "REQ-IO-002", "REQ-IO-003"],
+      "acceptance": ["AS-024"],
+      "adrs": ["ADR-IR-003"],
+      "verification": [],
+      "remaining_gap": "Approve connector and input-contract architecture."
+    },
+    {
+      "id": "SM-P-005",
+      "name": "Manifested outputs",
+      "status": "Specified",
+      "stories": ["US-070", "US-071"],
+      "requirements": ["REQ-IO-004", "REQ-IO-005", "REQ-IO-006", "REQ-IO-007", "REQ-IO-008", "REQ-IO-009"],
+      "acceptance": ["AS-027"],
+      "adrs": ["ADR-IR-004"],
+      "verification": [],
+      "remaining_gap": "Approve output-manifest and delivery architecture."
+    },
+    {
+      "id": "SM-P-006",
+      "name": "Governed relevance feedback",
+      "status": "Specified",
+      "stories": ["US-063", "US-064"],
+      "requirements": ["REQ-IR-011", "REQ-IR-012", "REQ-IR-013", "REQ-IR-014", "REQ-SC-004"],
+      "acceptance": ["AS-023"],
+      "adrs": ["ADR-IR-005"],
+      "verification": [],
+      "remaining_gap": "Approve ranking governance and collect evaluation evidence."
+    },
+    {
+      "id": "SM-P-007",
+      "name": "Current and historical views",
+      "status": "Specified",
+      "stories": ["US-061", "US-062"],
+      "requirements": ["REQ-IR-008", "REQ-IR-009", "REQ-IR-010"],
+      "acceptance": ["AS-022", "AS-023"],
+      "adrs": ["ADR-IR-009"],
+      "verification": [],
+      "remaining_gap": "Approve temporal retrieval architecture and verify as-of queries."
+    },
+    {
+      "id": "SM-P-008",
+      "name": "Explicit concurrency reconciliation",
+      "status": "Specified",
+      "stories": ["US-069"],
+      "requirements": ["REQ-SM-012", "REQ-SM-013", "REQ-SM-014"],
+      "acceptance": ["AS-026"],
+      "adrs": ["ADR-IR-007"],
+      "verification": [],
+      "remaining_gap": "Approve reconciliation architecture and verify concurrent contributions."
+    },
+    {
+      "id": "SM-P-009",
+      "name": "Measurable operations",
+      "status": "Specified",
+      "stories": ["US-068", "US-073", "US-074"],
+      "requirements": ["REQ-OP-001", "REQ-OP-002", "REQ-OP-003", "REQ-OP-004", "REQ-OP-005", "REQ-OP-006", "REQ-OP-007", "REQ-OP-008", "REQ-OP-009", "REQ-OP-010"],
+      "acceptance": ["AS-025"],
+      "adrs": ["ADR-IR-008", "ADR-IR-010"],
+      "verification": [],
+      "remaining_gap": "Set pilot objectives and collect operational measurements and exercises."
+    },
+    {
+      "id": "SM-P-010",
+      "name": "Authorization in derived representations",
+      "status": "Specified",
+      "stories": ["US-072", "US-075"],
+      "requirements": ["REQ-SC-001", "REQ-SC-002", "REQ-SC-003", "REQ-SC-004", "REQ-SC-005", "REQ-SC-006"],
+      "acceptance": ["AS-028"],
+      "adrs": ["ADR-IR-006"],
+      "verification": [],
+      "remaining_gap": "Approve derived-store security architecture and verify revocation."
+    },
+    {
+      "id": "SM-P-011",
+      "name": "Visible change, freshness, and incompleteness",
+      "status": "Specified",
+      "stories": ["US-060", "US-062", "US-068", "US-075"],
+      "requirements": ["REQ-IR-006", "REQ-IR-010", "REQ-IR-015", "REQ-SM-008", "REQ-IO-003", "REQ-OP-004"],
+      "acceptance": ["AS-021", "AS-023", "AS-025"],
+      "adrs": ["ADR-IR-001", "ADR-IR-002"],
+      "verification": [],
+      "remaining_gap": "Define freshness disclosures and collect user comprehension evidence."
+    },
+    {
+      "id": "SM-P-012",
+      "name": "Replaceable retrieval and delivery infrastructure",
+      "status": "Specified",
+      "stories": ["US-067", "US-071", "US-074"],
+      "requirements": ["REQ-SM-009", "REQ-SM-010", "REQ-IO-004", "REQ-OP-008", "REQ-OP-010"],
+      "acceptance": ["AS-025", "AS-027"],
+      "adrs": ["ADR-IR-010"],
+      "verification": [],
+      "remaining_gap": "Approve reconstruction architecture and demonstrate infrastructure replacement."
+    }
+  ]
+}
