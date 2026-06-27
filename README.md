@@ -61,10 +61,10 @@ Constitutional language, stories, requirements, and acceptance specifications ar
 
 ## Validation
 
-Run:
+Run the multi-ledger validator:
 
 ```bash
-python scripts/validate_documentation.py
+python scripts/validate_all_documentation.py
 ```
 
-Machine-readable coverage is under [`traceability/`](traceability/).
+Machine-readable coverage is under [`traceability/`](traceability/). The legacy single-ledger validator remains available for compatibility.
