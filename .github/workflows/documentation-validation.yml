@@ -1,12 +1,15 @@
-name: Documentation validation
+name: Documentation and delivery validation
 
 on:
   pull_request:
     paths:
       - "README.md"
       - "documents/**"
+      - "planning/**"
       - "traceability/**"
       - "scripts/validate_documentation.py"
+      - "scripts/validate_all_documentation.py"
+      - "scripts/validate_delivery_plan.py"
       - ".github/workflows/documentation-validation.yml"
   push:
     branches:
@@ -14,15 +17,18 @@ on:
     paths:
       - "README.md"
       - "documents/**"
+      - "planning/**"
       - "traceability/**"
       - "scripts/validate_documentation.py"
+      - "scripts/validate_all_documentation.py"
+      - "scripts/validate_delivery_plan.py"
       - ".github/workflows/documentation-validation.yml"
 
 permissions:
   contents: read
 
 jobs:
-  validate-documentation:
+  validate-documentation-and-delivery:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -34,4 +40,7 @@ jobs:
           python-version: "3.12"
 
       - name: Validate documentation inventory and traceability
-        run: python scripts/validate_documentation.py
+        run: python scripts/validate_all_documentation.py
+
+      - name: Validate phases, deliverables, dependencies, and risks
+        run: python scripts/validate_delivery_plan.py
