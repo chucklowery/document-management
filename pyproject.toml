@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "walking-slice"
+version = "0.0.1"
+description = "First walking slice of the Organizational Knowledge and Work System (see .kiro/specs/first-walking-slice)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [
+    { name = "Organizational Knowledge and Work System contributors" },
+]
+
+# Runtime dependencies for the modular monolith described in
+# .kiro/specs/first-walking-slice/design.md §"Application-Level Composition".
+dependencies = [
+    "fastapi>=0.110",
+    "pydantic>=2.5",
+    "sqlalchemy>=2.0",
+    "uvicorn>=0.27",
+    "httpx>=0.27",
+    "uuid-utils>=0.7",
+]
+
+[project.optional-dependencies]
+# Test stack mandated by Requirement 16.1 and design §"Testing Strategy".
+test = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "hypothesis>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["walking_slice*"]
+
+[tool.setuptools.package-dir]
+"" = "src"

@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+src/walking_slice/__init__.py
+src/walking_slice.egg-info/PKG-INFO
+src/walking_slice.egg-info/SOURCES.txt
+src/walking_slice.egg-info/dependency_links.txt
+src/walking_slice.egg-info/requires.txt
+src/walking_slice.egg-info/top_level.txt
+src/walking_slice/routes/__init__.py

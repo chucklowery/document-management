@@ -1,0 +1,76 @@
+{
+  "hypothesis_profile": "dev",
+  "invocations": [
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_54_indistinguishable_denial_outcome.py::test_indistinguishable_denial_across_slice4_endpoints",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_55_backlink_bidirectionality_outcome.py::test_backlink_bidirectionality_outcome",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_56_outcome_uniqueness.py::test_double_measurement_definition_rejected_and_first_byte_equivalent",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_56_outcome_uniqueness.py::test_double_imported_measurement_rejected_and_first_byte_equivalent",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_56_outcome_uniqueness.py::test_double_outcome_review_rejected_and_first_byte_equivalent",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_57_slice123_non_modification.py::test_slice123_non_modification_under_slice4_actions",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_58_identity_uniqueness_all_four_slices.py::test_identity_uniqueness_across_all_four_slices",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_59_audit_completeness_atomicity_outcome.py::test_audit_completeness_and_atomicity_across_outcome_actions",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_59_audit_completeness_atomicity_outcome.py::test_audit_append_failure_rolls_back_outcome_finalization",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_60_repeatable_runs_and_interim_adr.py::test_slice4_interim_adr_records_retrievable_by_backlog_adr_id",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_60_repeatable_runs_and_interim_adr.py::test_slice4_repeatable_pass_outcome_under_fixed_seed",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_60_repeatable_runs_and_interim_adr.py::test_slice4_repeatable_failure_and_minimal_counterexample_under_fixed_seed",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_60_repeatable_runs_and_interim_adr.py::test_slice4_seed_capture_artifact_wiring",
+      "outcome": "passed"
+    },
+    {
+      "hypothesis_seed": 2251419458151917773,
+      "nodeid": "tests/property/test_property_60_repeatable_runs_and_interim_adr.py::test_slice4_property_files_declare_property_marker_and_settings",
+      "outcome": "passed"
+    }
+  ],
+  "master_seed": 2251419458151917773
+}
