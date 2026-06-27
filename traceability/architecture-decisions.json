@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "project": "Organizational Knowledge and Work System",
+  "decisions": [
+    {
+      "id": "ADR-HT-001",
+      "title": "Durable Identity Strategy",
+      "status": "Accepted",
+      "document": "documents/13.01-adr-ht-001-durable-identity-strategy.md",
+      "accepted_date": "2026-06-22",
+      "verification": [],
+      "remaining_work": "Implement and verify durable identity behavior."
+    },
+    {
+      "id": "ADR-HT-002",
+      "title": "Canonical Semantic Serialization",
+      "status": "Accepted",
+      "document": "documents/13.02-adr-ht-002-canonical-semantic-serialization.md",
+      "accepted_date": "2026-06-27",
+      "conformance_fixtures": [
+        "examples/semantic-envelope/roundtrip-fixtures.json"
+      ],
+      "verification_tools": [
+        "scripts/verify_semantic_roundtrip.py"
+      ],
+      "verification": [],
+      "remaining_work": "Implement adapters and cross-language RFC 8785 conformance tests."
+    },
+    {
+      "id": "ADR-HT-003",
+      "title": "Content Region Anchoring",
+      "status": "Backlog",
+      "remaining_work": "Decide stable anchoring across edits, movement, splitting, merging, and conflicting revisions."
+    },
+    {
+      "id": "ADR-HT-004",
+      "title": "Relationship Persistence and Lifecycle",
+      "status": "Backlog",
+      "remaining_work": "Decide persistence and lifecycle semantics for asserted, continuing, effective-dated, immutable, derived, corrected, superseded, withdrawn, and restricted Relationships."
+    },
+    {
+      "id": "ADR-HT-005",
+      "title": "Backlink and Reverse-Dependency Indexing",
+      "status": "Backlog",
+      "remaining_work": "Decide reverse indexing, refresh, authorization, audit, and inference-leakage behavior."
+    }
+  ]
+}
