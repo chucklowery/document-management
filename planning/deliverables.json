@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "last_updated": "2026-06-27",
+  "status_note": "P0-D01 baseline drafted under evidence/P0-D01/. Pending LCO-gate (P0-D04) change set: reframe P3 from 'implement Slice 3' to 'verify/accept Slice 3' (Slice 3 is coded) and reclassify R-008. See evidence/P0-D01/deliverable.md Findings.",
   "status_values": ["proposed", "ready", "in_progress", "evidence_pending", "accepted", "rejected", "deferred", "cancelled"],
   "gate_decisions": ["go", "go-with-conditions", "redirect", "hold", "stop"],
   "defaults": {
@@ -18,7 +19,7 @@
     {"id":"P7","title":"Extension tracks for Slices 6 and 7","boehm_anchor":"separate-spirals","status":"deferred","primary_risks":["R-009","R-010"],"deliverables":["P7-D01","P7-D02","P7-D03","P7-D04","P7-D05"]}
   ],
   "deliverables": [
-    {"id":"P0-D01","phase":"P0","title":"Repository and implementation baseline","status":"in_progress","owner_role":"Delivery Lead","depends_on":[]},
+    {"id":"P0-D01","phase":"P0","title":"Repository and implementation baseline","status":"evidence_pending","owner_role":"Delivery Lead","depends_on":[]},
     {"id":"P0-D02","phase":"P0","title":"Stakeholder win-condition record","status":"proposed","owner_role":"Product Lead","depends_on":[]},
     {"id":"P0-D03","phase":"P0","title":"Initial risk register","status":"accepted","owner_role":"Delivery Lead","depends_on":[]},
     {"id":"P0-D04","phase":"P0","title":"LCO gate review","status":"proposed","owner_role":"Decision Authority","depends_on":["P0-D01","P0-D02","P0-D03"]},
